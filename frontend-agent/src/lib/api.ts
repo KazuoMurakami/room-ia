@@ -38,11 +38,11 @@ export const defaultFetchOptions: RequestInit = {
  * Helper para fazer requests HTTP com configuração padrão
  */
 export async function apiRequest<T>(
-  endpoint: string, 
+  endpoint: string,
   options?: RequestInit
 ): Promise<T> {
   const url = createApiUrl(endpoint)
-  
+
   const response = await fetch(url, {
     ...defaultFetchOptions,
     ...options,
@@ -53,4 +53,4 @@ export async function apiRequest<T>(
   }
 
   return response.json()
-} 
+}

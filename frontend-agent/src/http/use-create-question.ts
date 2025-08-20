@@ -9,16 +9,13 @@ export function useCreateQuestion(roomId: string) {
 
   return useMutation({
     mutationFn: async (data: CreateQuestionRequest) => {
-      const response = await fetch(
-        createApiUrl(`/rooms/${roomId}/questions`),
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        }
-      )
+      const response = await fetch(createApiUrl(`/rooms/${roomId}/questions`), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
 
       const result: CreateQuestionResponse = await response.json()
 

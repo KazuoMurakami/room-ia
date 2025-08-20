@@ -6,9 +6,7 @@ export function useRoomQuestions(roomId: string) {
   return useQuery({
     queryKey: ['get-questions', roomId],
     queryFn: async () => {
-      const response = await fetch(
-        createApiUrl(`/rooms/${roomId}/questions`)
-      )
+      const response = await fetch(createApiUrl(`/rooms/${roomId}/questions`))
       const result: GetRoomQuestionsResponse = await response.json()
 
       return result
