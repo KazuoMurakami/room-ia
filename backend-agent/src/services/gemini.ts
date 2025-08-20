@@ -13,7 +13,7 @@ export async function transcribeAudio(audioAsBase64: string, mimeType: string) {
     contents: [
       {
         text: 'Transcreva o áudio para português do Brasil. Seja preciso e natural na transcrição. Mantenha a pontuação adequada e divida o texto em parágrafos quando for apropriado.',
-      }, 
+      },
       {
         inlineData: {
           mimeType,
