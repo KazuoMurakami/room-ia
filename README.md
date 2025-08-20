@@ -75,6 +75,7 @@ Este projeto foi criado para ensinar conceitos avançados de desenvolvimento web
 | **pgvector**      | -      | Extensão para vetores         |
 | **Drizzle ORM**   | 0.44   | ORM type-safe                 |
 | **Google Gemini** | 1.8    | API de IA                     |
+| **Docker**        | -      | container para o banco        |
 | **Zod**           | 3.25   | Validação de schemas          |
 
 ## 📁 Estrutura do Projeto
