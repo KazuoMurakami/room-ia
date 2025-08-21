@@ -1,9 +1,9 @@
 /** biome-ignore-all lint/suspicious/noConsole: i want to use console.log */
 
 import { useRef, useState } from 'react'
-import { Navigate, useParams } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { createApiUrl } from '@/lib/api'
+import { Pause, Radio } from 'lucide-react'
 
 const isRecordingSupported =
   !!navigator.mediaDevices &&
@@ -14,8 +14,7 @@ type RoomParams = {
   roomId: string
 }
 
-export function RecordRoomAudio() {
-  const params = useParams<RoomParams>()
+export function RecordRoomAudio({ roomId }: RoomParams) {
   const [isRecording, setIsRecording] = useState(false)
   const recorder = useRef<MediaRecorder | null>(null)
   const intervalRef = useRef<NodeJS.Timeout>(null)
@@ -37,13 +36,10 @@ export function RecordRoomAudio() {
 
     formData.append('file', audio, 'audio.webm')
 
-    const response = await fetch(
-      createApiUrl(`/rooms/${params.roomId}/audio`),
-      {
-        method: 'POST',
-        body: formData,
-      }
-    )
+    const response = await fetch(createApiUrl(`/rooms/${roomId}/audio`), {
+      method: 'POST',
+      body: formData,
+    })
 
     const result = await response.json()
 
@@ -98,18 +94,19 @@ export function RecordRoomAudio() {
     }, 5000)
   }
 
-  if (!params.roomId) {
-    return <Navigate replace to="/" />
-  }
-
   return (
-    <div className="flex h-screen flex-col items-center justify-center gap-3">
+    <div>
       {isRecording ? (
-        <Button onClick={stopRecording}>Pausar gravação</Button>
+        <Button onClick={stopRecording}>
+          <Pause className="size-4" />
+          Pausar gravação
+        </Button>
       ) : (
-        <Button onClick={startRecording}>Gravar áudio</Button>
+        <Button onClick={startRecording}>
+          <Radio className="size-4" />
+          Gravar áudio
+        </Button>
       )}
-      {isRecording ? <p>Gravando...</p> : <p>Pausado</p>}
     </div>
   )
 }
