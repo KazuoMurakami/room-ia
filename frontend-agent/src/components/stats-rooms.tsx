@@ -29,11 +29,11 @@ export function StatsRooms() {
       </Card>
       <Card>
         <CardHeader className="flex flex-row items-center gap-2">
-          <House />
-          <CardTitle>Salas criadas</CardTitle>
+          <MessageCircleQuestionMark />
+          <CardTitle>Respostas criadas</CardTitle>
         </CardHeader>
         <CardContent className="font-bold text-neutral-500">
-          {data[0].totalAnswers} salas criadas
+          {data[0].totalAnswers} respostas criadas
         </CardContent>
       </Card>
     </div>
