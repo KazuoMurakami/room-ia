@@ -1,0 +1,103 @@
+---
+alwaysApply: true
+---
+
+# Regras do Projeto Frontend (nlw-agent)
+
+Este documento define as diretrizes e padrões a serem seguidos no desenvolvimento do frontend.
+
+## 1. Tecnologias Principais
+
+- **Framework:** React 19 com Vite.
+- **Linguagem:** TypeScript estritamente tipado.
+- **Estilização:** Tailwind CSS e **shadcn/ui**. Todos os novos componentes de UI devem ser criados seguindo os padrões do `shadcn/ui` ou reutilizando os componentes existentes em `src/components/ui`.
+- **Roteamento:** `react-router-dom`.
+- **Gerenciamento de Estado (Server-Side):** `@tanstack/react-query` (React Query).
+- **Formulários:** `react-hook-form` para controle de formulários e `zod` para validação de schemas.
+
+## 2. Estrutura de Diretórios
+
+Siga rigorosamente a estrutura de diretórios existente para manter a organização:
+
+- **`src/pages`**: Componentes que representam uma página completa.
+- **`src/components`**: Componentes reutilizáveis.
+  - **`src/components/ui`**: Componentes base do `shadcn/ui`.
+- **`src/http`**: Hooks e tipos relacionados a chamadas de API.
+  - **`src/http/types`**: Definições de tipos (interfaces) para requests e responses da API.
+- **`src/lib`**: Funções utilitárias, como `api.ts` para configuração de cliente HTTP e `utils.ts` para helpers gerais.
+
+## 3. Padrões de Código
+
+### Gerenciamento de Dados (API)
+
+- **Hooks do React Query:** Toda a comunicação com o backend (GET, POST, PUT, DELETE) **deve** ser encapsulada em um custom hook utilizando `@tanstack/react-query`.
+- **Localização dos Hooks:** Crie esses hooks dentro do diretório `src/http`. Por exemplo, para buscar dados de salas, use `src/http/use-rooms.ts`.
+- **Tipagem:** Sempre crie tipos para os payloads de request e response das APIs no diretório `src/http/types`.
+
+### Componentes
+
+- **Nomenclatura:**
+  - Arquivos de componentes e páginas: `kebab-case.tsx` (ex: `create-room.tsx`).
+  - Componentes React: `PascalCase` (ex: `CreateRoomForm`).
+- **Estilização:** Utilize as classes do Tailwind CSS e o utilitário `cn` (de `clsx` e `tailwind-merge`) importado de `@/lib/utils` para compor classes de forma condicional e organizada.
+
+### Formatação e Linting
+
+- **Biome:** O projeto utiliza Biome com o preset `ultracite`. Todo o código deve estar em conformidade com as regras de formatação e linting definidas no arquivo `biome.jsonc`.
+- **Ponto e vírgula:** A configuração `"semicolons": "asNeeded"` está ativa, portanto, não use ponto e vírgula onde não for estritamente necessário.
+
+### Nomenclatura Geral
+
+- **Variáveis e Funções:** `camelCase`.
+- **Hooks:** `useCamelCase` (ex: `useCreateRoom`).
+- **Tipos e Interfaces:** `PascalCase` (ex: `CreateRoomResponse`).
+
+# Regras do Projeto Frontend (nlw-agent)
+
+Este documento define as diretrizes e padrões a serem seguidos no desenvolvimento do frontend.
+
+## 1. Tecnologias Principais
+
+- **Framework:** React 19 com Vite.
+- **Linguagem:** TypeScript estritamente tipado.
+- **Estilização:** Tailwind CSS e **shadcn/ui**. Todos os novos componentes de UI devem ser criados seguindo os padrões do `shadcn/ui` ou reutilizando os componentes existentes em `src/components/ui`.
+- **Roteamento:** `react-router-dom`.
+- **Gerenciamento de Estado (Server-Side):** `@tanstack/react-query` (React Query).
+- **Formulários:** `react-hook-form` para controle de formulários e `zod` para validação de schemas.
+
+## 2. Estrutura de Diretórios
+
+Siga rigorosamente a estrutura de diretórios existente para manter a organização:
+
+- **`src/pages`**: Componentes que representam uma página completa.
+- **`src/components`**: Componentes reutilizáveis.
+  - **`src/components/ui`**: Componentes base do `shadcn/ui`.
+- **`src/http`**: Hooks e tipos relacionados a chamadas de API.
+  - **`src/http/types`**: Definições de tipos (interfaces) para requests e responses da API.
+- **`src/lib`**: Funções utilitárias, como `api.ts` para configuração de cliente HTTP e `utils.ts` para helpers gerais.
+
+## 3. Padrões de Código
+
+### Gerenciamento de Dados (API)
+
+- **Hooks do React Query:** Toda a comunicação com o backend (GET, POST, PUT, DELETE) **deve** ser encapsulada em um custom hook utilizando `@tanstack/react-query`.
+- **Localização dos Hooks:** Crie esses hooks dentro do diretório `src/http`. Por exemplo, para buscar dados de salas, use `src/http/use-rooms.ts`.
+- **Tipagem:** Sempre crie tipos para os payloads de request e response das APIs no diretório `src/http/types`.
+
+### Componentes
+
+- **Nomenclatura:**
+  - Arquivos de componentes e páginas: `kebab-case.tsx` (ex: `create-room.tsx`).
+  - Componentes React: `PascalCase` (ex: `CreateRoomForm`).
+- **Estilização:** Utilize as classes do Tailwind CSS e o utilitário `cn` (de `clsx` e `tailwind-merge`) importado de `@/lib/utils` para compor classes de forma condicional e organizada.
+
+### Formatação e Linting
+
+- **Biome:** O projeto utiliza Biome com o preset `ultracite`. Todo o código deve estar em conformidade com as regras de formatação e linting definidas no arquivo `biome.jsonc`.
+- **Ponto e vírgula:** A configuração `"semicolons": "asNeeded"` está ativa, portanto, não use ponto e vírgula onde não for estritamente necessário.
+
+### Nomenclatura Geral
+
+- **Variáveis e Funções:** `camelCase`.
+- **Hooks:** `useCamelCase` (ex: `useCreateRoom`).
+- **Tipos e Interfaces:** `PascalCase` (ex: `CreateRoomResponse`).

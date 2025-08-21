@@ -34,11 +34,13 @@ Projeto desenvolvido durante um evento da Rocketseat para demonstrar o uso de ag
 
 1. Clone o repositório
 2. Instale as dependências:
+
    ```bash
    npm install
    ```
 
 3. Execute o servidor de desenvolvimento:
+
    ```bash
    npm run dev
    ```
@@ -57,10 +59,11 @@ O projeto consome uma API que deve estar rodando na porta 3333. Certifique-se de
 
 ## 🛠️ Estrutura do Projeto
 
-```
+````
 src/
 ├── components/ui/    # Componentes de interface
 ├── pages/           # Páginas da aplicação
 ├── lib/             # Utilitários e configurações
 └── app.tsx          # Componente raiz
-``` 
+``` ,
+````

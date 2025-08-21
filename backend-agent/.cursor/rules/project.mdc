@@ -1,0 +1,99 @@
+---
+alwaysApply: true
+---
+
+# Regras do Projeto Backend (nlw-agent)
+
+Este documento define as diretrizes e padrões a serem seguidos no desenvolvimento do backend.
+
+## 1. Tecnologias Principais
+
+- **Framework:** Fastify.
+- **Linguagem:** TypeScript.
+- **Banco de Dados:** PostgreSQL.
+- **ORM:** Drizzle ORM.
+- **Validação:** Zod, integrado ao Fastify através do `fastify-type-provider-zod`.
+- **Variáveis de Ambiente:** Validação de schema com Zod em `src/env.ts`.
+
+## 2. Estrutura de Diretórios
+
+Siga rigorosamente a estrutura de diretórios existente:
+
+- **`src/http/routes`**: Arquivos que definem as rotas da API. Cada arquivo deve exportar uma `FastifyPluginCallbackZod`.
+- **`src/db`**: Tudo relacionado ao banco de dados.
+  - **`src/db/schema`**: Definições de tabelas do Drizzle. O arquivo `index.ts` agrega e exporta todos os schemas.
+  - **`src/db/migrations`**: Migrações geradas pelo `drizzle-kit`.
+- **`src/services`**: Lógica de negócio e integrações com serviços externos (ex: `gemini.ts`).
+- **`src/env.ts`**: Validação e exportação das variáveis de ambiente.
+
+## 3. Padrões de Código
+
+### Definição de Rotas
+
+- **Padrão de Plugin:** Cada rota deve ser definida como um plugin do Fastify em seu próprio arquivo dentro de `src/http/routes`.
+- **Validação com Zod:** Utilize o `schema` do Fastify para validar `body`, `params` e `querystring` usando schemas do Zod.
+- **Tipagem:** A função do plugin deve ser tipada com `FastifyPluginCallbackZod` para garantir a integração correta com o Zod.
+
+### Interação com Banco de Dados
+
+- **Drizzle ORM:** Todas as operações de banco de dados devem ser feitas utilizando o cliente Drizzle (`db`) importado de `src/db/connection.ts`.
+- **Schema:** Utilize os schemas definidos em `src/db/schema` para construir as queries, garantindo a segurança de tipos.
+
+### Formatação e Linting
+
+- **Biome:** O projeto utiliza Biome com o preset `ultracite`. Todo o código deve estar em conformidade com as regras definidas no `biome.jsonc`.
+- **Ponto e vírgula:** A configuração `"semicolons": "asNeeded"` está ativa; não use ponto e vírgula desnecessariamente.
+
+### Nomenclatura Geral
+
+- **Variáveis e Funções:** `camelCase`.
+- **Arquivos:** `kebab-case.ts`.
+- **Schemas e Tipos:** `PascalCase` ou `camelCase` conforme o contexto (seguir o padrão dos arquivos existentes).
+
+# Regras do Projeto Backend (nlw-agent)
+
+Este documento define as diretrizes e padrões a serem seguidos no desenvolvimento do backend.
+
+## 1. Tecnologias Principais
+
+- **Framework:** Fastify.
+- **Linguagem:** TypeScript.
+- **Banco de Dados:** PostgreSQL.
+- **ORM:** Drizzle ORM.
+- **Validação:** Zod, integrado ao Fastify através do `fastify-type-provider-zod`.
+- **Variáveis de Ambiente:** Validação de schema com Zod em `src/env.ts`.
+
+## 2. Estrutura de Diretórios
+
+Siga rigorosamente a estrutura de diretórios existente:
+
+- **`src/http/routes`**: Arquivos que definem as rotas da API. Cada arquivo deve exportar uma `FastifyPluginCallbackZod`.
+- **`src/db`**: Tudo relacionado ao banco de dados.
+  - **`src/db/schema`**: Definições de tabelas do Drizzle. O arquivo `index.ts` agrega e exporta todos os schemas.
+  - **`src/db/migrations`**: Migrações geradas pelo `drizzle-kit`.
+- **`src/services`**: Lógica de negócio e integrações com serviços externos (ex: `gemini.ts`).
+- **`src/env.ts`**: Validação e exportação das variáveis de ambiente.
+
+## 3. Padrões de Código
+
+### Definição de Rotas
+
+- **Padrão de Plugin:** Cada rota deve ser definida como um plugin do Fastify em seu próprio arquivo dentro de `src/http/routes`.
+- **Validação com Zod:** Utilize o `schema` do Fastify para validar `body`, `params` e `querystring` usando schemas do Zod.
+- **Tipagem:** A função do plugin deve ser tipada com `FastifyPluginCallbackZod` para garantir a integração correta com o Zod.
+
+### Interação com Banco de Dados
+
+- **Drizzle ORM:** Todas as operações de banco de dados devem ser feitas utilizando o cliente Drizzle (`db`) importado de `src/db/connection.ts`.
+- **Schema:** Utilize os schemas definidos em `src/db/schema` para construir as queries, garantindo a segurança de tipos.
+
+### Formatação e Linting
+
+- **Biome:** O projeto utiliza Biome com o preset `ultracite`. Todo o código deve estar em conformidade com as regras definidas no `biome.jsonc`.
+- **Ponto e vírgula:** A configuração `"semicolons": "asNeeded"` está ativa; não use ponto e vírgula desnecessariamente.
+
+### Nomenclatura Geral
+
+- **Variáveis e Funções:** `camelCase`.
+- **Arquivos:** `kebab-case.ts`.
+- **Schemas e Tipos:** `PascalCase` ou `camelCase` conforme o contexto (seguir o padrão dos arquivos existentes).

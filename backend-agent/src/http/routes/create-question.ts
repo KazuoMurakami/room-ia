@@ -50,6 +50,24 @@ export const createQuestionRoute: FastifyPluginCallbackZod = (app) => {
         const transcriptions = chunks.map((chunk) => chunk.transcription)
 
         answer = await generateAnswer(question, transcriptions)
+      } else {
+        console.log(`❌ Nenhum chunk relevante encontrado para a pergunta`)
+
+        const anyChunks = await db
+          .select({
+            transcription: schema.audioChunks.transcription,
+          })
+          .from(schema.audioChunks)
+          .where(eq(schema.audioChunks.roomId, roomId))
+          .limit(3)
+
+        if (anyChunks.length > 0) {
+          const transcriptions = anyChunks.map((chunk) => chunk.transcription)
+          answer = await generateAnswer(question, transcriptions)
+        } else {
+          answer =
+            'Não consegui encontrar informações relevantes para responder sua pergunta com base no conteúdo disponível.'
+        }
       }
 
       const result = await db

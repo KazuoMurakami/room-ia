@@ -4,7 +4,8 @@ import { QuestionForm } from '@/components/question-form'
 import { QuestionList } from '@/components/question-list'
 import { Button } from '@/components/ui/button'
 import { RecordRoomAudio } from '../components/record-room-audio'
-import { UploadRoomAudio } from '@/components/upload-room-audio'
+import { UploadMp3AudioForm } from '@/components/upload-mp3-audio-form'
+import { useQueryClient } from '@tanstack/react-query'
 
 type RoomParams = {
   roomId: string
@@ -12,9 +13,16 @@ type RoomParams = {
 
 export function Room() {
   const params = useParams<RoomParams>()
+  const queryClient = useQueryClient()
 
   if (!params.roomId) {
     return <Navigate replace to="/" />
+  }
+
+  function handleMp3AudioUploaded() {
+    queryClient.invalidateQueries({
+      queryKey: ['get-room-questions', params.roomId],
+    })
   }
 
   return (
@@ -30,7 +38,10 @@ export function Room() {
             </Link>
             <div className="flex gap-2">
               <RecordRoomAudio roomId={params.roomId} />
-              <UploadRoomAudio roomId={params.roomId} />
+              <UploadMp3AudioForm
+                roomId={params.roomId}
+                onSuccess={handleMp3AudioUploaded}
+              />
             </div>
           </div>
           <h1 className="mb-2 font-bold text-3xl text-foreground">
