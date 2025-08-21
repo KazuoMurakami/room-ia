@@ -23,6 +23,7 @@ export function useCreateRoom() {
 
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['get-rooms'] })
+      queryClient.invalidateQueries({ queryKey: ['get-stats-rooms'] })
     },
   })
 }
